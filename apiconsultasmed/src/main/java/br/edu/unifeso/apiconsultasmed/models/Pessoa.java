@@ -1,22 +1,29 @@
 package br.edu.unifeso.apiconsultasmed.models;
 
-import java.time.LocalDate;
-
 public abstract class Pessoa {
 
 	private Integer id;
 	private String nome;
 	private String sobrenome;
 	private String cpf;
-	private LocalDate dataNascimento;
+	private String dataNascimento;
 
-	public Pessoa(Integer id, String nome, String sobrenome, String cpf, LocalDate dataNascimento) {
+	public Pessoa(Integer id, String nome, String sobrenome, String cpf, String dataNascimento) {
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
 	}
+
+	public Pessoa(String nome, String sobrenome, String cpf, String dataNascimento) {
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+	}
+	
+	public Pessoa() {}
 
 	public Integer getId() {
 		return id;
@@ -50,11 +57,11 @@ public abstract class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 }

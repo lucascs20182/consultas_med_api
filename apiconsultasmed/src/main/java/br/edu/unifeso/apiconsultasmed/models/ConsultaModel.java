@@ -1,20 +1,20 @@
 package br.edu.unifeso.apiconsultasmed.models;
 
-import java.time.LocalDate;
-
 public class ConsultaModel {
 
 	private Integer id;
 	private Integer idPaciente;
 	private Integer idMedico;
-	private LocalDate dataConsulta;
+	private String dataConsulta;
 
-	public ConsultaModel(Integer id, Integer idPaciente, Integer idMedico, LocalDate dataConsulta) {
+	public ConsultaModel(Integer id, Integer idPaciente, Integer idMedico, String dataConsulta) {
 		this.id = id;
 		this.idPaciente = idPaciente;
 		this.idMedico = idMedico;
 		this.dataConsulta = dataConsulta;
 	}
+	
+	public ConsultaModel() {}
 
 	public Integer getId() {
 		return id;
@@ -40,11 +40,11 @@ public class ConsultaModel {
 		this.idMedico = idMedico;
 	}
 
-	public LocalDate getDataConsulta() {
+	public String getDataConsulta() {
 		return dataConsulta;
 	}
 
-	public void setDataConsulta(LocalDate dataConsulta) {
+	public void setDataConsulta(String dataConsulta) {
 		this.dataConsulta = dataConsulta;
 	}
 }
