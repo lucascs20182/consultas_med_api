@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "6f1c8a47-673a-4046-a1ae-7c89d23ff1e4",
+		"name": "consulta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cadastrar consulta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"idPaciente\": 1,\r\n    \"idMedico\": 1,\r\n    \"dataConsulta\": \"26/06/1997\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/paciente/cadastrar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"paciente",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar todas consultas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/consulta",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consulta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar uma consulta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/consulta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consulta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "excluir consulta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Cruz\",\r\n    \"cpf\": \"12677744290\",\r\n    \"dataNascimento\": \"26/06/1997\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/consulta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consulta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar consulta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"idPaciente\": 1,\r\n    \"idMedico\": 1,\r\n    \"dataConsulta\": \"31/06/1997\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/consulta/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"consulta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

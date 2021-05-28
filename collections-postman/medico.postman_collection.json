@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "81d227ba-c96f-4332-9384-2a71171f05b3",
+		"name": "medico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cadastrar medico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Dr. Lucas\",\r\n    \"sobrenome\": \"Cruz\",\r\n    \"cpf\": \"12677744290\",\r\n    \"dataNascimento\": \"26/06/1997\",\r\n    \"especialidade\": \"cardiologista\",\r\n    \"crm\": \"0000000-0/BR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/medico/cadastrar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medico",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar todos medicos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/medico",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar um medico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/medico/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "excluir medico",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Lucas\",\r\n    \"sobrenome\": \"Cruz\",\r\n    \"cpf\": \"12677744290\",\r\n    \"dataNascimento\": \"26/06/1997\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/medico/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar medico",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Dr. Lucas editado\",\r\n    \"sobrenome\": \"Cruz\",\r\n    \"cpf\": \"12677744290\",\r\n    \"dataNascimento\": \"26/06/1997\",\r\n    \"especialidade\": \"cardiologista\",\r\n    \"crm\": \"0000000-0/BR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/medico/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"medico",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
