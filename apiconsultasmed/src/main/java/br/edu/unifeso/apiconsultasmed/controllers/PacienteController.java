@@ -3,6 +3,7 @@ package br.edu.unifeso.apiconsultasmed.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.unifeso.apiconsultasmed.exceptions.ItemNotFoundException;
 import br.edu.unifeso.apiconsultasmed.models.PacienteModel;
 import br.edu.unifeso.apiconsultasmed.services.PacienteService;
 
@@ -23,27 +25,27 @@ public class PacienteController {
 	PacienteService pacienteService;
 	
 	@GetMapping
-	public List<PacienteModel> listarTodos() {
-		return pacienteService.listarTodos();
+	public ResponseEntity<List<PacienteModel>> listarTodos() {
+		return ResponseEntity.ok().body(pacienteService.listarTodos());
 	}
 	
 	@GetMapping("/{id}")
-	public PacienteModel listarUm(@PathVariable Integer id) {
-		return pacienteService.listarUm(id);
+	public ResponseEntity<PacienteModel> listarUm(@PathVariable Integer id) throws ItemNotFoundException {
+		return ResponseEntity.ok().body(pacienteService.listarUm(id));
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrar(@RequestBody PacienteModel paciente) {
-		pacienteService.cadastrar(paciente);
+	public ResponseEntity<PacienteModel> cadastrar(@RequestBody PacienteModel paciente) {
+		return ResponseEntity.ok().body(pacienteService.cadastrar(paciente));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletar(@PathVariable Integer id) {
-		pacienteService.deletar(id);
+	public ResponseEntity<String> deletar(@PathVariable Integer id) throws ItemNotFoundException {
+		return ResponseEntity.ok().body(pacienteService.deletar(id));
 	}
 	
 	@PutMapping("/{id}")
-	public void atualizarDados(@PathVariable Integer id, @RequestBody PacienteModel paciente) {
-		pacienteService.atualizarDados(id, paciente);
+	public ResponseEntity<PacienteModel> atualizarDados(@PathVariable Integer id, @RequestBody PacienteModel paciente) throws ItemNotFoundException {
+		return ResponseEntity.ok().body(pacienteService.atualizarDados(id, paciente));
 	}
 }

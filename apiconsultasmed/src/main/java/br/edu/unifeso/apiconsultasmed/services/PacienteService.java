@@ -5,44 +5,46 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.edu.unifeso.apiconsultasmed.exceptions.ItemNotFoundException;
 import br.edu.unifeso.apiconsultasmed.models.PacienteModel;
 
 @Service
 public final class PacienteService {
 	public final static List<PacienteModel> listaPacientes = new ArrayList<>();
 
-	public void cadastrar(PacienteModel paciente) {
+	public PacienteModel cadastrar(PacienteModel paciente) {
 		listaPacientes.add(paciente);
+		
+		return paciente;
 	}
 
 	public List<PacienteModel> listarTodos() {
 		return PacienteService.listaPacientes;
 	}
 
-	public PacienteModel listarUm(Integer id) {
+	public PacienteModel listarUm(Integer id) throws ItemNotFoundException {
 		for (PacienteModel paciente : listaPacientes) {
 			if (paciente.getId().compareTo(id) == 0) {
 				return paciente;
 			}
 		}
 
-		System.out.println("Paciente com id " + id + " não encontrado");
-		return null;
+		throw new ItemNotFoundException("Paciente com id " + id + " não encontrado");
 	}
 
-	public void deletar(Integer id) {
+	public String deletar(Integer id) throws ItemNotFoundException {
 		for (PacienteModel paciente : listaPacientes) {
 			if (paciente.getId().compareTo(id) == 0) {
 				listaPacientes.remove(listaPacientes.indexOf(paciente));
 				
-				return;
+				return "Deletado com sucesso";
 			}
 		}
 
-		System.out.println("Paciente com id " + id + " não encontrado");
+		throw new ItemNotFoundException("Paciente com id " + id + " não encontrado");
 	}
 
-	public void atualizarDados(Integer id, PacienteModel novosDados) {
+	public PacienteModel atualizarDados(Integer id, PacienteModel novosDados) throws ItemNotFoundException {
 		for (PacienteModel paciente : listaPacientes) {
 			if (paciente.getId().compareTo(id) == 0) {
 				paciente.setNome(novosDados.getNome());
@@ -50,10 +52,10 @@ public final class PacienteService {
 				paciente.setCpf(novosDados.getCpf());
 				paciente.setDataNascimento(novosDados.getDataNascimento());
 				
-				return;
+				return paciente;
 			}
 		}
 
-		System.out.println("Paciente com id " + id + " não encontrado");
+		throw new ItemNotFoundException("Paciente com id " + id + " não encontrado");
 	}
 }
