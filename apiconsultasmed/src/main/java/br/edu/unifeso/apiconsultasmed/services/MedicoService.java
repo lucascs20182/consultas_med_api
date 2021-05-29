@@ -5,44 +5,46 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.edu.unifeso.apiconsultasmed.exceptions.ItemNotFoundException;
 import br.edu.unifeso.apiconsultasmed.models.MedicoModel;
 
 @Service
 public class MedicoService {
 	public final static List<MedicoModel> listaMedicos = new ArrayList<>();
 
-	public void cadastrar(MedicoModel medico) {
+	public MedicoModel cadastrar(MedicoModel medico) {
 		listaMedicos.add(medico);
+		
+		return medico;
 	}
 
 	public List<MedicoModel> listarTodos() {
 		return MedicoService.listaMedicos;
 	}
 
-	public MedicoModel listarUm(Integer id) {
+	public MedicoModel listarUm(Integer id) throws ItemNotFoundException {
 		for (MedicoModel medico : listaMedicos) {
 			if (medico.getId().compareTo(id) == 0) {
 				return medico;
 			}
 		}
 
-		System.out.println("Médico com id " + id + " não encontrado");
-		return null;
+		throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
 	}
 
-	public void deletar(Integer id) {
+	public String deletar(Integer id) throws ItemNotFoundException {
 		for (MedicoModel medico : listaMedicos) {
 			if (medico.getId().compareTo(id) == 0) {
 				listaMedicos.remove(listaMedicos.indexOf(medico));
 				
-				return;
+				return "Deletado com sucesso";
 			}
 		}
 
-		System.out.println("Médico com id " + id + " não encontrado");
+		throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
 	}
 
-	public void atualizarDados(Integer id, MedicoModel novosDados) {
+	public MedicoModel atualizarDados(Integer id, MedicoModel novosDados) throws ItemNotFoundException {
 		for (MedicoModel medico : listaMedicos) {
 			if (medico.getId().compareTo(id) == 0) {
 				medico.setNome(novosDados.getNome());
@@ -52,10 +54,10 @@ public class MedicoService {
 				medico.setEspecialidade(novosDados.getEspecialidade());
 				medico.setCrm(novosDados.getCrm());
 				
-				return;
+				return medico;
 			}
 		}
 
-		System.out.println("Médico com id " + id + " não encontrado");
+		throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
 	}
 }

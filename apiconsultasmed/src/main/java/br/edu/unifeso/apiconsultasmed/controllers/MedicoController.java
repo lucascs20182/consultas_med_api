@@ -3,6 +3,7 @@ package br.edu.unifeso.apiconsultasmed.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.unifeso.apiconsultasmed.exceptions.ItemNotFoundException;
 import br.edu.unifeso.apiconsultasmed.models.MedicoModel;
 import br.edu.unifeso.apiconsultasmed.services.MedicoService;
 
@@ -23,27 +25,27 @@ public class MedicoController {
 	MedicoService medicoService;
 	
 	@GetMapping
-	public List<MedicoModel> listarTodos() {
-		return medicoService.listarTodos();
+	public ResponseEntity<List<MedicoModel>> listarTodos() {
+		return ResponseEntity.ok().body(medicoService.listarTodos());
 	}
 	
 	@GetMapping("/{id}")
-	public MedicoModel listarUm(@PathVariable Integer id) {
-		return medicoService.listarUm(id);
+	public ResponseEntity<MedicoModel> listarUm(@PathVariable Integer id) throws ItemNotFoundException {
+		return ResponseEntity.ok().body(medicoService.listarUm(id));
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrar(@RequestBody MedicoModel medico) {
-		medicoService.cadastrar(medico);
+	public ResponseEntity<MedicoModel> cadastrar(@RequestBody MedicoModel medico) {
+		return ResponseEntity.ok().body(medicoService.cadastrar(medico));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletar(@PathVariable Integer id) {
-		medicoService.deletar(id);
+	public ResponseEntity<String> deletar(@PathVariable Integer id) throws ItemNotFoundException {
+		return ResponseEntity.ok().body(medicoService.deletar(id));
 	}
 	
 	@PutMapping("/{id}")
-	public void atualizarDados(@PathVariable Integer id, @RequestBody MedicoModel medico) {
-		medicoService.atualizarDados(id, medico);
+	public ResponseEntity<MedicoModel> atualizarDados(@PathVariable Integer id, @RequestBody MedicoModel medico) throws ItemNotFoundException {
+		return ResponseEntity.ok().body(medicoService.atualizarDados(id, medico));
 	}
 }
