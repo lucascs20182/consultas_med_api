@@ -6,6 +6,9 @@ public class ConsultaModel {
 	private Integer idPaciente;
 	private Integer idMedico;
 	private String dataConsulta;
+	
+	private String representacaoPaciente;
+	private String representacaoMedico;
 
 	public ConsultaModel(Integer id, Integer idPaciente, Integer idMedico, String dataConsulta) {
 		this.id = id;
@@ -46,5 +49,21 @@ public class ConsultaModel {
 
 	public void setDataConsulta(String dataConsulta) {
 		this.dataConsulta = dataConsulta;
+	}
+
+	public String getRepresentacaoPaciente() {
+		return representacaoPaciente;
+	}
+
+	public void setRepresentacaoPaciente(String representacaoPaciente) {
+		this.representacaoPaciente = representacaoPaciente;
+	}
+
+	public String getRepresentacaoMedico() {
+		return representacaoMedico;
+	}
+
+	public void setRepresentacaoMedico(String representacaoMedico) {
+		this.representacaoMedico = representacaoMedico;
 	}
 }
