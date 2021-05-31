@@ -1,63 +1,53 @@
 package br.edu.unifeso.apiconsultasmed.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.unifeso.apiconsultasmed.exceptions.ItemNotFoundException;
 import br.edu.unifeso.apiconsultasmed.models.MedicoModel;
+import br.edu.unifeso.apiconsultasmed.repositories.MedicoRepository;
 
 @Service
 public class MedicoService {
-	public final static List<MedicoModel> listaMedicos = new ArrayList<>();
-
-	public MedicoModel cadastrar(MedicoModel medico) {
-		listaMedicos.add(medico);
-		
-		return medico;
-	}
+	@Autowired
+	MedicoRepository medicoRepository;
 
 	public List<MedicoModel> listarTodos() {
-		return MedicoService.listaMedicos;
+		return medicoRepository.findAll();
 	}
 
-	public MedicoModel listarUm(Integer id) throws ItemNotFoundException {
-		for (MedicoModel medico : listaMedicos) {
-			if (medico.getId().compareTo(id) == 0) {
-				return medico;
-			}
+	public MedicoModel listarUm(String id) throws ItemNotFoundException {
+		if(medicoRepository.findById(id).isEmpty()) {
+			throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
 		}
-
-		throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
+		
+		return medicoRepository.findById(id).get();
+	}
+	
+	public MedicoModel cadastrar(MedicoModel medico) {
+		return medicoRepository.save(medico);
 	}
 
-	public String deletar(Integer id) throws ItemNotFoundException {
-		for (MedicoModel medico : listaMedicos) {
-			if (medico.getId().compareTo(id) == 0) {
-				listaMedicos.remove(listaMedicos.indexOf(medico));
-				
-				return "Deletado com sucesso";
-			}
+	public void deletar(String id) throws ItemNotFoundException {
+		if(medicoRepository.findById(id).isEmpty()) {
+			throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
 		}
-
-		throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
+		
+		medicoRepository.deleteById(id);
 	}
 
-	public MedicoModel atualizarDados(Integer id, MedicoModel novosDados) throws ItemNotFoundException {
-		for (MedicoModel medico : listaMedicos) {
-			if (medico.getId().compareTo(id) == 0) {
-				medico.setNome(novosDados.getNome());
-				medico.setSobrenome(novosDados.getSobrenome());
-				medico.setCpf(novosDados.getCpf());
-				medico.setDataNascimento(novosDados.getDataNascimento());
-				medico.setEspecialidade(novosDados.getEspecialidade());
-				medico.setCrm(novosDados.getCrm());
-				
-				return medico;
-			}
-		}
+	public MedicoModel atualizarDados(String id, MedicoModel novosDados) throws ItemNotFoundException {
+		MedicoModel medico = listarUm(id);
+		
+		medico.setNome(novosDados.getNome());
+		medico.setSobrenome(novosDados.getSobrenome());
+		medico.setCpf(novosDados.getCpf());
+		medico.setDataNascimento(novosDados.getDataNascimento());
+		medico.setEspecialidade(novosDados.getEspecialidade());
+		medico.setCrm(novosDados.getCrm());
 
-		throw new ItemNotFoundException("Médico com id " + id + " não encontrado");
+		return medicoRepository.save(medico);
 	}
 }

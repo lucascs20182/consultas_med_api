@@ -1,45 +1,42 @@
 package br.edu.unifeso.apiconsultasmed.models;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "Consulta")
 public class ConsultaModel {
 
-	private Integer id;
-	private Integer idPaciente;
-	private Integer idMedico;
-	private String dataConsulta;
+	@Id
+	private String id;
 	
+	private String idPaciente;
+	private String idMedico;
+	private String dataConsulta;
+
 	private String representacaoPaciente;
 	private String representacaoMedico;
 
-	public ConsultaModel(Integer id, Integer idPaciente, Integer idMedico, String dataConsulta) {
-		this.id = id;
-		this.idPaciente = idPaciente;
-		this.idMedico = idMedico;
-		this.dataConsulta = dataConsulta;
-	}
-	
-	public ConsultaModel() {}
-
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Integer getIdPaciente() {
+	public String getIdPaciente() {
 		return idPaciente;
 	}
 
-	public void setIdPaciente(Integer idPaciente) {
+	public void setIdPaciente(String idPaciente) {
 		this.idPaciente = idPaciente;
 	}
 
-	public Integer getIdMedico() {
+	public String getIdMedico() {
 		return idMedico;
 	}
 
-	public void setIdMedico(Integer idMedico) {
+	public void setIdMedico(String idMedico) {
 		this.idMedico = idMedico;
 	}
 

@@ -38,7 +38,7 @@ public class ConsultaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ConsultaModel> listarUm(@PathVariable Integer id) throws ItemNotFoundException {
+	public ResponseEntity<ConsultaModel> listarUm(@PathVariable String id) throws ItemNotFoundException {
 		return ResponseEntity.ok().body(consultaService.listarUm(id));
 	}
 	
@@ -50,12 +50,12 @@ public class ConsultaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deletar(@PathVariable Integer id) throws ItemNotFoundException {
-		return ResponseEntity.ok().body(consultaService.deletar(id));
+	public void deletar(@PathVariable Integer id) throws ItemNotFoundException {
+		ResponseEntity.ok();
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ConsultaModel> atualizarDados(@PathVariable Integer id, @RequestBody ConsultaModel consulta) throws ItemNotFoundException {
+	public ResponseEntity<ConsultaModel> atualizarDados(@PathVariable String id, @RequestBody ConsultaModel consulta) throws ItemNotFoundException {
 		return ResponseEntity.ok().body(consultaService.atualizarDados(id, consulta));
 	}
 }

@@ -30,7 +30,7 @@ public class PacienteController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PacienteModel> listarUm(@PathVariable Integer id) throws ItemNotFoundException {
+	public ResponseEntity<PacienteModel> listarUm(@PathVariable String id) throws ItemNotFoundException {
 		return ResponseEntity.ok().body(pacienteService.listarUm(id));
 	}
 	
@@ -40,12 +40,12 @@ public class PacienteController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deletar(@PathVariable Integer id) throws ItemNotFoundException {
-		return ResponseEntity.ok().body(pacienteService.deletar(id));
+	public void deletar(@PathVariable String id) throws ItemNotFoundException {
+		ResponseEntity.ok();
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<PacienteModel> atualizarDados(@PathVariable Integer id, @RequestBody PacienteModel paciente) throws ItemNotFoundException {
+	public ResponseEntity<PacienteModel> atualizarDados(@PathVariable String id, @RequestBody PacienteModel paciente) throws ItemNotFoundException {
 		return ResponseEntity.ok().body(pacienteService.atualizarDados(id, paciente));
 	}
 }
