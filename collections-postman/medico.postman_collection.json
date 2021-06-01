@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Dr. Lucas\",\r\n    \"sobrenome\": \"Cruz\",\r\n    \"cpf\": \"12677744290\",\r\n    \"dataNascimento\": \"26/06/1997\",\r\n    \"especialidade\": \"cardiologista\",\r\n    \"crm\": \"0000000-0/BR\"\r\n}",
+					"raw": "{\r\n    \"nome\": \"Dr. Lucas\",\r\n    \"sobrenome\": \"Cruz\",\r\n    \"cpf\": \"12677744290\",\r\n    \"dataNascimento\": \"26/06/1997\",\r\n    \"especialidade\": \"cardiologista\",\r\n    \"crm\": \"0000000-0/BR\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

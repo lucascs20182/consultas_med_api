@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"idPaciente\": 1,\r\n    \"idMedico\": 1,\r\n    \"dataConsulta\": \"26/06/1997\"\r\n}",
+					"raw": "{\r\n    \"idPaciente\": \"60b55998caa1505c53a890ff\",\r\n    \"idMedico\": \"60b55a60caa1505c53a89100\",\r\n    \"dataConsulta\": \"26/06/1997\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,13 +20,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/paciente/cadastrar",
+					"raw": "localhost:8080/consulta/cadastrar",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"paciente",
+						"consulta",
 						"cadastrar"
 					]
 				}
@@ -85,14 +85,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/consulta/1",
+					"raw": "localhost:8080/consulta/60b57a64d4fd8d63885052e7",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"consulta",
-						"1"
+						"60b57a64d4fd8d63885052e7"
 					]
 				}
 			},
@@ -105,7 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"idPaciente\": 1,\r\n    \"idMedico\": 1,\r\n    \"dataConsulta\": \"31/06/1997\"\r\n}",
+					"raw": "{\r\n    \"dataConsulta\": \"31/07/1997\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,14 +113,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/consulta/1",
+					"raw": "localhost:8080/consulta/60b57a64d4fd8d63885052e7",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"consulta",
-						"1"
+						"60b57a64d4fd8d63885052e7"
 					]
 				}
 			},
