@@ -43,14 +43,14 @@ public class ConsultaController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<ConsultaModel> cadastrar(@RequestBody ConsultaModel consulta,
-			PacienteService pacienteService, MedicoService medicoService) throws ItemNotFoundException {
-				return ResponseEntity.ok().body(consultaService.cadastrar(consulta, 
-						pacienteService, medicoService));
+	public ResponseEntity<ConsultaModel> cadastrar(@RequestBody ConsultaModel consulta) throws ItemNotFoundException {
+			return ResponseEntity.ok().body(consultaService.cadastrar(consulta, pacienteService, medicoService));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletar(@PathVariable Integer id) throws ItemNotFoundException {
+	public void deletar(@PathVariable String id) throws ItemNotFoundException {
+		consultaService.deletar(id);
+		
 		ResponseEntity.ok();
 	}
 	

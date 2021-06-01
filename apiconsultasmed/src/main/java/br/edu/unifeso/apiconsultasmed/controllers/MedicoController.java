@@ -41,6 +41,8 @@ public class MedicoController {
 	
 	@DeleteMapping("/{id}")
 	public void deletar(@PathVariable String id) throws ItemNotFoundException {
+		medicoService.deletar(id);
+		
 		ResponseEntity.ok();
 	}
 	

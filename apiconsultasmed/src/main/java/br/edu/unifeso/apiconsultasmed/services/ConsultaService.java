@@ -15,28 +15,6 @@ import br.edu.unifeso.apiconsultasmed.repositories.ConsultaRepository;
 public class ConsultaService {
 	@Autowired
 	ConsultaRepository consultaRepository;
-	
-	private String constroiComoPacienteSeraRepresentado(String id, PacienteService pacienteService) throws ItemNotFoundException {
-		PacienteModel paciente = pacienteService.listarUm(id);
-		
-		return String.format("%s - %s", paciente.getNome(), paciente.getCpf());
-	}
-	
-	private String constroiComoMedicoSeraRepresentado(String id, MedicoService medicoService) throws ItemNotFoundException {
-		MedicoModel medico = medicoService.listarUm(id);
-		
-		return String.format("%s - %s", medico.getNome(), medico.getCpf());
-	}
-
-	public ConsultaModel cadastrar(ConsultaModel consulta, PacienteService pacienteService, 
-			MedicoService medicoService) throws ItemNotFoundException {
-				String idConsulta = consulta.getId();
-				
-				consulta.setRepresentacaoPaciente(constroiComoPacienteSeraRepresentado(idConsulta, pacienteService));
-				consulta.setRepresentacaoMedico(constroiComoMedicoSeraRepresentado(idConsulta, medicoService));		
-				
-				return consultaRepository.save(consulta);
-	}
 
 	public List<ConsultaModel> listarTodos() {
 		return consultaRepository.findAll();
@@ -48,6 +26,18 @@ public class ConsultaService {
 		}
 		
 		return consultaRepository.findById(id).get();
+	}
+	
+	public ConsultaModel cadastrar(ConsultaModel consulta, PacienteService pacienteService, 
+			MedicoService medicoService) throws ItemNotFoundException {
+				
+				PacienteModel paciente = pacienteService.listarUm(consulta.getIdPaciente());
+				MedicoModel medico = medicoService.listarUm(consulta.getIdMedico());
+
+				consulta.setRepresentacaoPaciente(String.format("%s - CPF %s", paciente.getNome(), paciente.getCpf()));
+				consulta.setRepresentacaoMedico(String.format("%s - CRM %s", medico.getNome(), medico.getCrm()));		
+				
+				return consultaRepository.save(consulta);
 	}
 
 	public void deletar(String id) throws ItemNotFoundException {
@@ -61,8 +51,6 @@ public class ConsultaService {
 	public ConsultaModel atualizarDados(String id, ConsultaModel novosDados) throws ItemNotFoundException {
 		ConsultaModel consulta = listarUm(id);
 		
-		consulta.setIdMedico(novosDados.getIdMedico());
-		consulta.setIdPaciente(novosDados.getIdPaciente());
 		consulta.setDataConsulta(novosDados.getDataConsulta());
 		
 		return consultaRepository.save(consulta);
